@@ -11,11 +11,26 @@ export default function UserInfo({ clusterName }: { clusterName: string | null }
 
   return (
     <>
-      <h1 className="text-2xl font-bold">Plume Community Hub</h1>
+      <span 
+        onClick={() => window.open("https://testnet.clusters.xyz/community/plume")}
+        className="hover:cursor-pointer"
+      >
+        <h1 className="text-2xl font-bold">Plume Community Hub</h1>
+      </span>
       {isConnected ? (
         <p className="text-sm font-mono">
           Connected: {address}
-          {clusterName && ` Community Name: ${clusterName}`}
+          {clusterName && (
+            <>
+              <br />
+              <span
+                onClick={() => window.open(`https://testnet.clusters.xyz/${clusterName}`)}
+                className="hover:cursor-pointer"
+              >
+                Community Name: {clusterName}
+              </span>
+            </>
+          )}
         </p>
       ) : (
         <p className="max-w-md text-center">
