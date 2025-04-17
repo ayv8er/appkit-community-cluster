@@ -1,10 +1,9 @@
 'use client'
 
-import { wagmiAdapter, projectId, networks } from '@/config'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createAppKit, type AppKit } from '@reown/appkit/react'
-
 import React, { type ReactNode } from 'react'
+import { wagmiAdapter, projectId, networks } from '@/config'
+import { createAppKit, type AppKit } from '@reown/appkit/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
 
 const queryClient = new QueryClient()

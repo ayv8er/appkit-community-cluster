@@ -10,7 +10,7 @@ if (!projectId) {
   throw new Error('Project ID is not defined')
 }
 
-export const networks = [sepolia, plumeSepolia,plumeMainnet] as unknown as [Chain, ...Chain[]]
+export const networks = [sepolia, plumeSepolia, plumeMainnet] as unknown as [Chain, ...Chain[]]
 
 export const wagmiAdapter = new WagmiAdapter({
   storage: createStorage({

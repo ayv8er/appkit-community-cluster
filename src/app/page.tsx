@@ -1,43 +1,33 @@
 "use client";
 
-import { modal } from "../context";
+import { useCallback, useState, useEffect } from "react";
 import { useAccount } from 'wagmi';
-import { ClusterDisplay } from "@/components/ClusterDisplay";
+import ClaimModal from "@/components/ClaimModal";
+import UserInfo from "@/components/UserInfo";
 
 export default function Home() {
+  const [clusterName, setClusterName] = useState<string | null>(null);
   const { isConnected, address } = useAccount();
 
-  const handleOpenAppKit = () => {
-    if (!modal) {
-      console.error('Modal not initialized');
-      return;
+  const fetchClusterName = useCallback(async () => {
+    try {
+      const response = await fetch(`https://api.clusters.xyz/v1/names/address/${address}?testnet=true`);
+      const data = await response.json();
+      if (!data.clusterName) return;
+      setClusterName(data.clusterName);
+    } catch (error) {
+      console.error('Error fetching cluster name:', error);
     }
-    modal.open();
-  };
+  }, [address]);
+  
+  useEffect(() => {
+    fetchClusterName();
+  }, [fetchClusterName]);
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-6 p-8">
-      <h1 className="text-2xl font-bold">Community Hub</h1>
-
-      {!isConnected && (
-        <p className="max-w-md text-center">
-          Login via AppKit to claim your community name.
-        </p>
-      )}
-
-      {isConnected && address && (
-        <p className="text-sm font-mono">
-          Connected: {address}
-        </p>
-      )}
-
-      <button
-        onClick={handleOpenAppKit}
-        className="rounded-none px-4 py-2 bg-blue-900 text-white hover:bg-blue-950">
-        {isConnected ? "Open AppKit Modal" : "Login"}
-      </button>
-
-      {isConnected ? <ClusterDisplay walletAddress={address} /> : null}
+      <UserInfo clusterName={clusterName} />
+      {isConnected && !clusterName && <ClaimModal setClusterName={setClusterName} />}
     </main>
   );
 }
