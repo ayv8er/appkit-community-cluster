@@ -2,7 +2,7 @@
 
 A Next.js application that allows users to authenticate with [AppKit](https://reown.com/appkit) and claim their community name.
 
-Demo App URL: 
+Demo App URL: https://appkit-plume-community-cluster.vercel.app/
 
 Clusters API v1 Documentation URL: https://docs.clusters.xyz/getting-started/api
 
