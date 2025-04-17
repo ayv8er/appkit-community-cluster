@@ -51,7 +51,7 @@ export default function ClaimModal({ setClusterName }: { setClusterName: (name: 
       });
       const data = await response.json();
       if (data.success) {
-        setClusterName(claimName);
+        setClusterName(`plume/${claimName}`);
         setClaimName("");
       } else {
         console.error("Error claiming name:", data);
