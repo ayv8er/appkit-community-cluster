@@ -1,6 +1,12 @@
-# Cluster - Claim Community Name
+# Community Cluster - Claim Plume Community Name
 
 A Next.js application that allows users to authenticate with [AppKit](https://reown.com/appkit) and claim their community name.
+
+# Claim Testnet Name on Clusters
+
+Clusters Claim Page: https://testnet.clusters.xyz/community/plume/register
+
+# Claim Testnet Name on Custom Build
 
 Demo App URL: https://appkit-plume-community-cluster.vercel.app/
 
